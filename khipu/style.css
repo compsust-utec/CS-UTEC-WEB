@@ -572,6 +572,9 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 .side20{
 	width:20%;
 }
+.side80{
+	width:80%;
+}
 
 .sidebar--sticky {
 /*    position: sticky;
@@ -586,17 +589,6 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
     /*padding: 8px 0;*/
 }
 
-.sticky-navbar{
-	position:fixed;
-	top:8.4%;
-    width:30%;
-	z-index:1000;
-	transition: all .2s ease-out;
-}
-
-.side80{
-	width:80%;
-}
 .transp{
 	border-color:rgba(0,0,0,0.9);
 	background-color:rgba(192,192,192,0.3);
@@ -643,22 +635,18 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 }
 .statement-bloc-text{
 	line-height:38px;
-	font-style:italic;
-	font-size:28px;
+	font-size:22px;
 	text-align:center;
 	font-weight:lighter;
 }
-
-.statement-bloc-text-mod{
-	/*line-height:38px;*/
-	/*font-style:italic;*/
-	/*font-size:28px;*/
-	text-align:center;
-	font-weight:lighter;
-}
-
 .blocs-mobile-signup-text{
 	font-size:33px;
+}
+.desksize{
+	width:57%;
+}
+.mobsize{
+	width:90%;
 }
 
 /* = Colour
