@@ -21,8 +21,8 @@ jobs:
                     DEPLOY_KEY: ${{secrets.DEPLOY_KEY}}
                 with:
                     flags: '-avc --delete'
-                    src: '/'
-                    dest: '${{ secrets.DEPLOY_USER }}@"${{secrets.DEPLOY_HOST}}":/home/csutec/www/test'
+                    src: '/khipu'
+                    dest: '${{ secrets.DEPLOY_USER }}@${{secrets.DEPLOY_HOST}}:/home/csutec/www/test'
 
             -   name: Display status from deploy
                 run: echo "${{ steps.deploy.outputs.status }}"
