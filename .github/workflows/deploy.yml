@@ -1,28 +1,30 @@
-name: Deploy
+name: Deploy2
 
 on:
   push:
     branches: [ master ]
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        timeout-minutes: 30
-        steps:
-            -   run: ls -la
-            -   uses: actions/checkout@master
+  build:
 
-            -   run: sudo apt-get install rsync
-           
-            -   name: Deploy theme on server
-                id: deploy_theme
-                uses: Pendect/action-rsyncer@v1.1.0
-                env:
-                    DEPLOY_KEY: ${{secrets.DEPLOY_KEY}}
-                with:
-                    flags: '-avc --delete'
-                    src: '/khipu'
-                    dest: '${{ secrets.DEPLOY_USER }}@${{secrets.DEPLOY_HOST}}/home/csutec/www/test'
+    runs-on: ubuntu-latest
 
-            -   name: Display status from deploy
-                run: echo "${{ steps.deploy.outputs.status }}"
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Install npm dependencies
+      run: npm install
+    - name: Run build task
+      run: npm run build --if-present
+    - name: Deploy to Server
+      uses: easingthemes/ssh-deploy@v2.1.5
+      env:
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
+          ARGS: "-rltgoDzvO --delete"
+          SOURCE: "khipu/"
+          REMOTE_HOST: ${{ secrets.DEPLOY_HOST }}
+          REMOTE_USER: ${{ secrets.DEPLOY_USER }}
+          TARGET: "/home/csutec/www/test/"
