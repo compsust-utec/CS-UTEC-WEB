@@ -22,7 +22,7 @@ jobs:
                 with:
                     flags: '-avc --delete'
                     src: '/khipu'
-                    dest: '${{ secrets.DEPLOY_USER }}@${{secrets.DEPLOY_HOST}}:/home/csutec/www/test/.'
+                    dest: '${{ secrets.DEPLOY_USER }}@${{secrets.DEPLOY_HOST}}/home/csutec/www/test'
 
             -   name: Display status from deploy
                 run: echo "${{ steps.deploy.outputs.status }}"
