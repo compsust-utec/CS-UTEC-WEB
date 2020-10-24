@@ -1,21 +1,28 @@
-name: SSH Deploy
+name: Deploy
 
 on:
   push:
     branches: [ master ]
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
+        timeout-minutes: 30
+        steps:
+            -   run: ls -la
+            -   uses: actions/checkout@master
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: ssh deploy
-        uses: easingthemes/ssh-deploy@v2.1.4
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
-          REMOTE_HOST: ${{ secrets.DEPLOY_HOST }}
-          REMOTE_USER: ${{ secrets.DEPLOY_USER }}
-          REMOTE_PORT: ${{ secrets.DEPLOY_PORT }}
-          SOURCE: "/"
-          TARGET: ${{ secrets.DEPLOY_TARGET }}
+            -   run: sudo apt-get install rsync
+           
+            -   name: Deploy theme on server
+                id: deploy_theme
+                uses: Pendect/action-rsyncer@v1.1.0
+                env:
+                    DEPLOY_KEY: ${{secrets.DEPLOY_KEY}}
+                with:
+                    flags: '-avc --delete'
+                    src: '/'
+                    dest: '${{ secrets.DEPLOY_USER }}@"${{secrets.DEPLOY_HOST}}":/home/csutec/www/test'
+
+            -   name: Display status from deploy
+                run: echo "${{ steps.deploy.outputs.status }}"
