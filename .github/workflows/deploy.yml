@@ -17,7 +17,8 @@ jobs:
         host: ${{ secrets.DEPLOY_HOST }}
         username: ${{ secrets.DEPLOY_USER }}
         password: ${{ secrets.DEPLOY_PASSWORD }}
-        overwrite: true
+        rm: true
+        timeout: 60
         port: ${{ secrets.DEPLOY_PORT }}
         source: "*"
         target: "/home/jesus/webCSUTEC/temp/."
