@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: copy file via ssh password
+    - name: copy files to temporal location vía SCP
       uses: appleboy/scp-action@master
       with:
         host: ${{ secrets.DEPLOY_HOST }}
@@ -21,13 +21,10 @@ jobs:
         source: "*"
         target: "/home/jesus/webCSUTEC/temp/"
     
-    - name: executing remote ssh commands using password
+    - name: move the files from temp location to desire location
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.DEPLOY_HOST }}
         username: ${{ secrets.DEPLOY_USER }}
-        password: ${{ secrets.DEPLOY_PASSWORD }}
-        port: ${{ secrets.DEPLOY_PORT }}
-        script: |
-          cp -r /home/jesus/webCSUTEC/temp/* /home/csutec/www/temp/.
-          ls -al
+        key: ${{ secrets.DEPLOY_KEY }}
+        script: cp -r /home/jesus/webCSUTEC/temp/* /home/csutec/www/.
