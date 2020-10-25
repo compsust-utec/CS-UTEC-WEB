@@ -27,4 +27,4 @@ jobs:
         host: ${{ secrets.DEPLOY_HOST }}
         username: ${{ secrets.DEPLOY_USER }}
         key: ${{ secrets.DEPLOY_KEY }}
-        script: cp -r /home/jesus/webCSUTEC/temp/* /home/csutec/www/.
+        script: cp -r /home/jesus/webCSUTEC/temp/public/* /home/csutec/www/.
