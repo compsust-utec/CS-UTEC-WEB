@@ -18,7 +18,7 @@ jobs:
         username: ${{ secrets.DEPLOY_USER }}
         key: ${{ secrets.DEPLOY_KEY }}
         rm: true
-        source: "/public"
+        source: "public/*"
         target: "/home/jesus/webCSUTEC/temp/"
     
     - name: move the files from temp location to desire location
