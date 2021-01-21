@@ -22,17 +22,20 @@ export class FormularioComponent implements OnInit {
     private formService: FormsService,
     private router: Router
   ) {
-    this.formGroup = this.fb.group({
-      name: ['', [Validators.required, Validators.pattern('.{2,}')]],
-      summary: ['', [Validators.required, Validators.pattern('.{2,}')]],
-      objectives: ['', [Validators.required]],
-      type: ['educativo', [Validators.required]],
-      starts: ['', [Validators.required]],
-      ends: ['', [Validators.required]],
-      principal: this.addMembers(),
-      members: this.fb.array([]),
-      softwares: this.fb.array([this.addSoftwares()]),
-    });
+    this.formGroup = this.fb.group(
+      {
+        name: ['', [Validators.required, Validators.pattern('.{2,}')]],
+        summary: ['', [Validators.required, Validators.pattern('.{2,}')]],
+        objectives: ['', [Validators.required]],
+        type: ['educativo', [Validators.required]],
+        starts: ['', [Validators.required]],
+        ends: ['', [Validators.required]],
+        principal: this.addMembers(),
+        members: this.fb.array([]),
+        softwares: this.fb.array([this.addSoftwares()]),
+      },
+      { validator: this.checkDates }
+    );
   }
 
   toJSON(): FormKhipu {
@@ -73,6 +76,15 @@ export class FormularioComponent implements OnInit {
       objectives: this.formGroup.value.objectives,
       type: this.projectType,
     };
+  }
+
+  checkDates() {
+    if (
+      this.formGroup.controls.ends.value < this.formGroup.controls.starts.value
+    ) {
+      return { notValid: true };
+    }
+    return null;
   }
 
   formatDate(dateString: string) {

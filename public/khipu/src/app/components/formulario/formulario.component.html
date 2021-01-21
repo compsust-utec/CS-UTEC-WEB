@@ -49,6 +49,9 @@
                         matSuffix
                       ></mat-datepicker-toggle>
                       <mat-datepicker #starts></mat-datepicker>
+                      <mat-error *ngIf="formGroup.hasError('notValid')"
+                        >Fechas no Validas</mat-error
+                      >
                     </mat-form-field>
                   </div>
                   <div class="row">
@@ -65,6 +68,9 @@
                         matSuffix
                       ></mat-datepicker-toggle>
                       <mat-datepicker #ends></mat-datepicker>
+                      <mat-error *ngIf="formGroup.hasError('notValid')"
+                        >Fechas no Validas</mat-error
+                      >
                     </mat-form-field>
                   </div>
                 </div>
