@@ -142,6 +142,16 @@ export class FormularioComponent implements OnInit {
           }).then();
         },
         (error: any) => {
+          if (error.status == 400) {
+            Swal.fire({
+              titleText: 'Oops!',
+              html:
+                'Ya existe un proyecto con ese nombre. Intenta con otro, por favor.',
+              allowOutsideClick: true,
+              icon: 'warning',
+              showConfirmButton: true,
+            });
+          }
           console.log(error);
           Swal.fire({
             titleText: 'Oops!',
