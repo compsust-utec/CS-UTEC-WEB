@@ -18,11 +18,8 @@ export class FormularioComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private formService: FormsService) {
     this.formGroup = this.fb.group({
-      name: ['', [Validators.required, Validators.pattern('[a-zA-ZÀ-ú ]{2,}')]],
-      summary: [
-        '',
-        [Validators.required, Validators.pattern('[a-zA-ZÀ-ú ]{2,}')],
-      ],
+      name: ['', [Validators.required, Validators.pattern('.{2,}')]],
+      summary: ['', [Validators.required, Validators.pattern('.{2,}')]],
       objectives: ['', [Validators.required]],
       type: ['educativo', [Validators.required]],
       starts: ['', [Validators.required]],
@@ -80,16 +77,13 @@ export class FormularioComponent implements OnInit {
   addMembers(): FormGroup {
     return this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      nombre: [
-        '',
-        [Validators.required, Validators.pattern('[a-zA-ZÀ-ú ]{2,}')],
-      ],
+      nombre: ['', [Validators.required, Validators.pattern('.{2,}')]],
     });
   }
 
   addSoftwares(): FormGroup {
     return this.fb.group({
-      name: ['', [Validators.required, Validators.pattern('[a-zA-ZÀ-ú ]{3,}')]],
+      name: ['', [Validators.required, Validators.pattern('.{3,}')]],
       license: ['true', [Validators.required]],
     });
   }
