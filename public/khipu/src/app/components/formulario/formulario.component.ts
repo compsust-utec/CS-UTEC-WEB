@@ -142,6 +142,8 @@ export class FormularioComponent implements OnInit {
           }).then();
         },
         (error: any) => {
+          console.log(error);
+          console.log(error.status, error.status == 400);
           if (error.status == 400) {
             Swal.fire({
               titleText: 'Oops!',
@@ -151,16 +153,16 @@ export class FormularioComponent implements OnInit {
               icon: 'warning',
               showConfirmButton: true,
             });
+          } else {
+            Swal.fire({
+              titleText: 'Oops!',
+              html:
+                'Parece que el servidor está ocupado o caído en este momento, por favor intenta más tarde.',
+              allowOutsideClick: true,
+              icon: 'error',
+              showConfirmButton: true,
+            });
           }
-          console.log(error);
-          Swal.fire({
-            titleText: 'Oops!',
-            html:
-              'Parece que el servidor está ocupado o caído en este momento, por favor intenta más tarde.',
-            allowOutsideClick: true,
-            icon: 'error',
-            showConfirmButton: true,
-          });
         }
       );
     } else {
