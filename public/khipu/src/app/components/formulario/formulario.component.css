@@ -1,0 +1,60 @@
+.bg-blue {
+  background-color: #d9edf7;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+}
+
+.bg-white {
+  border-radius: 15px;
+  background-color: #fff;
+  padding: 0px 35px 35px;
+  border-top: 20px solid #5ba4d5;
+}
+
+.bg-blue .row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.mt-3 {
+  margin-top: 15px;
+}
+
+.my-3 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.example-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.miembros {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.radio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.radio_buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.licence {
+  margin: 10px 0;
+}
+
+::ng-deep .swal2-popup {
+  font-size: 14px !important;
+}
