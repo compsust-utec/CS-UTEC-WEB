@@ -78,10 +78,8 @@ export class FormularioComponent implements OnInit {
     };
   }
 
-  checkDates() {
-    if (
-      this.formGroup.controls.ends.value < this.formGroup.controls.starts.value
-    ) {
+  checkDates(formGroup: FormGroup) {
+    if (formGroup.controls.ends.value < formGroup.controls.starts.value) {
       return { notValid: true };
     }
     return null;
@@ -185,13 +183,23 @@ export class FormularioComponent implements OnInit {
         }
       );
     } else {
-      Swal.fire({
-        titleText: 'Oops!',
-        html: 'Debes completar los campos obligatorios faltantes',
-        allowOutsideClick: true,
-        icon: 'error',
-        showConfirmButton: true,
-      });
+      if (this.formGroup.hasError('notValid')) {
+        Swal.fire({
+          titleText: 'Oops!',
+          html: 'La fecha de inicio no puede ser mayor que la fecha de fin.',
+          allowOutsideClick: true,
+          icon: 'error',
+          showConfirmButton: true,
+        });
+      } else {
+        Swal.fire({
+          titleText: 'Oops!',
+          html: 'Debes completar los campos obligatorios faltantes',
+          allowOutsideClick: true,
+          icon: 'error',
+          showConfirmButton: true,
+        });
+      }
     }
   }
 }
