@@ -90,7 +90,7 @@ export class FormularioComponent implements OnInit {
   addSoftwares(): FormGroup {
     return this.fb.group({
       name: ['', [Validators.required, Validators.pattern('[a-zA-ZÀ-ú ]{3,}')]],
-      license: [true, [Validators.required]],
+      license: ['true', [Validators.required]],
     });
   }
 
