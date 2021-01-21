@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { FormKhipu } from 'src/app/core/model/forms';
 import { FormsService } from 'src/app/core/services/forms.service';
@@ -16,7 +17,11 @@ export class FormularioComponent implements OnInit {
 
   private baseUrl: string = environment.baseUrl;
 
-  constructor(private fb: FormBuilder, private formService: FormsService) {
+  constructor(
+    private fb: FormBuilder,
+    private formService: FormsService,
+    private router: Router
+  ) {
     this.formGroup = this.fb.group({
       name: ['', [Validators.required, Validators.pattern('.{2,}')]],
       summary: ['', [Validators.required, Validators.pattern('.{2,}')]],
@@ -139,7 +144,9 @@ export class FormularioComponent implements OnInit {
             allowOutsideClick: true,
             icon: 'success',
             showConfirmButton: true,
-          }).then();
+          }).then(() => {
+            this.router.navigate(['/index']);
+          });
         },
         (error: any) => {
           console.log(error);
