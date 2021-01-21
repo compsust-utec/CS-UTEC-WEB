@@ -38,9 +38,9 @@ export class FormularioComponent implements OnInit {
       {
         users: {
           email: this.formGroup.value.principal.email,
-          nombre: this.formGroup.value.principal.nombre,
+          name: this.formGroup.value.principal.nombre,
           username: this.formGroup.value.principal.email.split('@')[0],
-          type: this.projectType == 'educativo' ? 'docente' : 'investigador',
+          type: 'RESEARCHER',
         },
         isPrincipalResearcher: true,
       },
@@ -49,9 +49,9 @@ export class FormularioComponent implements OnInit {
       members.push({
         users: {
           email: element.value.email,
-          nombre: element.value.name,
+          name: element.value.nombre,
           username: element.value.email.split('@')[0],
-          type: this.projectType == 'educativo' ? 'alumno' : 'investigador',
+          type: this.projectType == 'educativo' ? 'USUARIO' : 'RESEARCHER',
         },
         isPrincipalResearcher: false,
       });
@@ -145,7 +145,7 @@ export class FormularioComponent implements OnInit {
             allowOutsideClick: true,
             icon: 'success',
             showConfirmButton: true,
-          });
+          }).then();
         },
         (error: any) => {
           console.log(error);

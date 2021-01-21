@@ -12,7 +12,7 @@ export interface FormKhipu {
 interface Member {
   users: {
     email: string;
-    nombre: string;
+    name: string;
     username: string;
     type: string;
   };
