@@ -15,6 +15,7 @@ jobs:
         host: ${{ secrets.DEPLOY_HOST }}
         username: ${{ secrets.DEPLOY_USER }}
         key: ${{ secrets.DEPLOY_KEY }}
+        debug: true
         rm: true
         source: "public/*"
         target: "/home/jesus/webCSUTEC/temp/"
